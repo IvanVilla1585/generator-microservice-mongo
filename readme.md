@@ -1,16 +1,16 @@
-# generator-micro-service [![Build Status](https://travis-ci.org/vadimdemedes/generator-micro-service.svg?branch=master)](https://travis-ci.org/vadimdemedes/generator-micro-service)
+# generator-microservice-mongo 
 
-🚀 Kick-start your microservice with `micro` and `ava`!
+🚀 Kick-start your microservice with `micro`, `ava` and `mongo`!
 
-*Based on [generator-nm](https://github.com/sindresorhus/generator-nm) by Sindre Sorhus.*
+*Based on [generator-micro-service](https://github.com/vadimdemedes/generator-micro-service)*
 
 ## Features
 
 - <img src="https://cdn.rawgit.com/zeit/art/master/micro/logo-vector.svg" width="16">&nbsp; Build using [micro](https://github.com/zeit/micro)
 - 🚀 Test with [AVA](https://ava.li)
 - ❤️ Lint using [XO](https://github.com/sindresorhus/xo)
-- 📜 Get a readme with buttons for instant deployment to [now](https://zeit.co/now)
-- 💲 Generate a CLI (optional)
+- ❤️ DB Mongo Client
+- ❤️ Defaults Endpoinst
 
 
 ## Installation
@@ -19,19 +19,14 @@ First, install [Yeoman](http://yeoman.io) and generator-micro-service using [npm
 
 ```bash
 $ npm install --global yo
-$ npm install --global generator-micro-service
+$ npm install --global generator-microservice-mongo
 ```
 
 
 ## Usage
 
 ```bash
-$ yo micro-service
+$ yo microservice-mongo
 ```
 
 Answer a few questions and you are ready to go!
-
-
-## License
-
-MIT © [Vadim Demedes](https://vadimdemedes.com)
