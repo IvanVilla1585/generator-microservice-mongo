@@ -1,38 +1,44 @@
-# <%= appName %> [![Build Status](https://travis-ci.org/<%= username %>/<%= appName %>.svg?branch=master)](https://travis-ci.org/<%= username %>/<%= appName %>)
-
-> <%= description %>
-
-[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/<%= username %>/<%= appName %>)
-
+# <%= appNameCapitalize %> 
 
 ## Usage
-<% if (cli) { %>
 ```bash
-$ npm install --global <%= appName %>
-$ <%= appName %>
-```<% } else { %>
-```bash
-$ git clone <%= username %>/<%= appName %>.git
-$ cd <%= appName %>
-$ npm start
-```
-<% } %>
-
-
-## Deployment
-
-This microservice can be deployed to [now](https://zeit.co/now) by Zeit.
-Assuming you've got `now` installed and set up:
-
-```bash
-$ now <%= username %>/<%= appName %>
+$ npm run start
 ```
 
-Alternative, deploy right now without even leaving the browser:
+## Default Endpoints
 
-[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/<%= username %>/<%= appName %>)
+```js
+/*
+ * <%= appNameUpperCase %>  Query
+ * GET /*
+ * params: mongo stringify query
+ *  - ?name=**&admin={$or:{ ***, *** }}
+ *  - ?_id=**
+ */
+```
 
+```js
+/*
+  * <%= appNameUpperCase %> Create
+  * POST /
+  * body: <%= appNameCapitalize %> fields (see validator)
+  */
+```
 
-## License
+```js
+/*
+  * <%= appNameUpperCase %> Update
+  * POST /:id
+  * params: @id 
+  * body: Dataset to update
+  */
+```
 
-MIT © <%= name %>
+```js
+/*
+  * <%= appNameUpperCase %> Update status (INACTIVE)
+  * POST /remove/:id
+  * params: @id 
+  */
+ ```
+

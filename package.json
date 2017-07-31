@@ -1,13 +1,13 @@
 {
-  "name": "generator-micro-service",
+  "name": "generator-microservice-mongo",
   "version": "1.0.0",
   "description": "Kickstart your microservice with `micro` and `ava`!",
   "license": "MIT",
-  "repository": "vadimdemedes/generator-micro-service",
+  "repository": "jechav/generator-micro-service",
   "author": {
-    "name": "Vadim Demedes",
-    "email": "vdemedes@gmail.com",
-    "url": "https://vadimdemedes.com"
+    "name": "Jose Echavez",
+    "email": "jose.echavez92@gmail.com",
+    "url": ""
   },
   "keywords": [
     "micro",
