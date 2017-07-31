@@ -19,14 +19,16 @@ First, install [Yeoman](http://yeoman.io) and generator-micro-service using [npm
 
 ```bash
 $ npm install --global yo
-$ npm install --global generator-microservice-mongo
+$ git clone https://github.com/jechav/generator-microservice-mongo
+$ cd generator-microservice-mongo/
+$ npm link
 ```
 
 
 ## Usage
 
 ```bash
-$ yo microservice-mongo
+yo microservice-mongo
 ```
 
 Answer a few questions and you are ready to go!
