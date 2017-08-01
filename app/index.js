@@ -13,9 +13,15 @@ module.exports = class extends Generator {
 		return this.prompt([
 			{
 				name: 'appName',
-				message: 'What do you want to name your microservice (singular)?',
+				message: 'What do you want to name your microservice?',
 				default: kebabcase(this.appname)
 			},
+      {
+        name: 'mongoURL',
+        message: 'Mongo URL (pass via env.MONGO_URL  too)',
+        store: true,
+        default: 'mongodb://localhost/'+kebabcase(this.appname)
+      },
 			{
 				name: 'description',
 				message: 'What is your app description?',

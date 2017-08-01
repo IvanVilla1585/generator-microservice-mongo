@@ -1,4 +1,4 @@
 module.exports = {
-  db: process.env.MONGO_URL || 'mongodb://localhost/ardi-admin',
+  db: process.env.MONGO_URL || '<%= mongoURL %>',
   env: process.env.ENV || 'dev'
 }
