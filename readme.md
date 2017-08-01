@@ -7,10 +7,10 @@
 ## Features
 
 - <img src="https://cdn.rawgit.com/zeit/art/master/micro/logo-vector.svg" width="16">&nbsp; Build using [micro](https://github.com/zeit/micro)
-- 🚀 Test with [AVA](https://ava.li)
-- ❤️ Lint using [XO](https://github.com/sindresorhus/xo)
-- ❤️ DB Mongo Client
-- ❤️ Defaults Endpoinst
+-  Test with [AVA](https://ava.li)
+-  Lint using [XO](https://github.com/sindresorhus/xo)
+-  DB Mongo Client
+-  Defaults Endpoinst
 
 
 ## Installation
@@ -30,5 +30,9 @@ $ npm link
 ```bash
 yo microservice-mongo
 ```
-
 Answer a few questions and you are ready to go!
+
+## TODO
+- [ ] test generator
+- [ ] add default test endpoints
+
