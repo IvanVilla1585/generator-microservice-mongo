@@ -1,24 +1,21 @@
-const Promise = require ('bluebird');
+const mongoose = require('mongoose');
+const Promise = require('bluebird');
 const config = require('../config');
-const { MongoClient }  = require('mongodb');
+require('./model');
 
-//micro "middleware"
-const db = fn => async (req, res, params) => {
-  const db = await new Promise((resolve, reject) => {
-    MongoClient.connect(config.db, (err, db) => {
-      if (err) { reject(err); }
-      resolve(db);
-    });
-  });
+const db = fn => async(req, res, params) => {
+	const options = {useMongoClient: true};
+	const conn = await mongoose.createConnection(config.db, options);
 
-  // Expose the connection
-  req.DB = db;
+	// expose connection
+	req.Model = conn.model('<%= appNameUpperCase %>');
 
-  // Close the connection
-  res.on('finish', () => {
-    db.close();
-  });
+	// close connection
+	res.on('finish', () => {
+		conn.close();
+	});
 
-  return fn(req, res, params);
-}
+	return fn(req, res, params);
+};
+
 module.exports = db;
