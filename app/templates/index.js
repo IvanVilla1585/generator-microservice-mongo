@@ -12,8 +12,7 @@ const visualize = require('micro-visualize');
 
 const config = require('./config');
 
-const hash = HttpHash()
-const collection<%= appName %> = '<%= appName %>s'
+const hash = HttpHash();
 
 /*
   * <%= appNameUpperCase %>  Query
@@ -22,17 +21,30 @@ const collection<%= appName %> = '<%= appName %>s'
   *  - ?name=**&admin={$or:{ ***, *** }}
   *  - ?_id=**
   */
-hash.set('GET /*', db(async (req, res, params) => {
-  const { DB } = req;
+hash.set('GET /query/*', db(async (req, res, params) => {
+  const { Model } = req;
   const query = parse(req.url, true).query; // get query strings
 
   // eslint-disable-next-line
   for (const i in query) query[i] = JSON.parse(unescape(query[i])); // parse query to object
 
-  const records = await DB.collection(collection<%= appName %>).find(query).toArray();
+  const records = await Model.find(query);
 
   send(res, 200, records);
-}))
+}));
+
+/*
+  * <%= appNameUpperCase %> find by id
+  * GET /:id
+  * params: @id
+  */
+hash.set('GET /:id', db(async (req, res, params) => {
+	const { Model } = req;
+
+	const resp = await Model.findById(params.id);
+
+	send(res, 200, resp);
+}));
 
 /*
   * <%= appNameUpperCase %> Create
@@ -41,49 +53,45 @@ hash.set('GET /*', db(async (req, res, params) => {
   */
 hash.set('POST /', compose(validator<%= appNameCapitalize %>, db)(async (req, res, params) => {
 
-  const { DB } = req;
+  const { Model } = req;
   const data = await json(req);
-  const resp = await DB.collection(collection<%= appName %>).insertOne(data);
+  const resp = await new Model(data).save();
 
-  send(res, 200, resp.ops[0]);
-}))
+  send(res, 200, resp);
+}));
 
 /*
   * <%= appNameUpperCase %> Update
   * POST /:id
-  * params: @id 
+  * params: @id
   * body: Dataset to update
   */
-hash.set('POST /:id', db(async (req, res, params) => {
-  const { DB } = req;
+hash.set('PUT /:id', db(async (req, res, params) => {
+  const { Model } = req;
   const data = await json(req);
   delete data._id;
 
-  const resp = await DB.collection(collection<%= appName %>).findOneAndUpdate({
-    _id: new ObjectID(params.id),
-  }, { $set: data });
+  const resp = await Model.findByIdAndUpdate(params.id, { $set: data }, { new: true });
 
-  send(res, 200, resp.value);
+  send(res, 200, resp);
 }));
 
 /*
   * <%= appNameUpperCase %> Update status (INACTIVE)
-  * POST /remove/:id
-  * params: @id 
+  * PUT /remove/:id
+  * params: @id
   */
-hash.set('POST /remove/:id', db(async (req, res, params) => {
-  const { DB } = req;
+hash.set('DELETE /:id', db(async (req, res, params) => {
+  const { Model } = req;
   const data = { status: 'INACTIVE' };
 
-  const resp = await DB.collection(collection<%= appName %>).findOneAndUpdate({
-    _id: new ObjectID(params.id),
-  }, { $set: data });
+  const resp = await Model.findById(params.id).remove();
 
-  send(res, 200, resp.value);
+  send(res, 200, resp);
 }));
 
 /*
- *MAIN 
+ *MAIN
  */
 module.exports = visualize(async function main (req, res) {
   let { method, url } = req
